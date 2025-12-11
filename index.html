@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple and accessible task manager application">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header role="banner">
+            <h1>Task Manager</h1>
+            <p class="subtitle">Organize your tasks efficiently</p>
+        </header>
+
+        <main role="main">
+            <section aria-labelledby="add-task-heading">
+                <h2 id="add-task-heading" class="sr-only">Add New Task</h2>
+                <form id="task-form" class="task-form" novalidate>
+                    <div class="form-group">
+                        <label for="task-input">New Task</label>
+                        <input
+                            type="text"
+                            id="task-input"
+                            class="task-input"
+                            placeholder="Add a new task..."
+                            required
+                            aria-describedby="task-input-error"
+                            autocomplete="off"
+                        >
+                        <span id="task-input-error" class="error-message" aria-live="polite"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary" aria-label="Add task">
+                        <span class="btn-icon">+</span>
+                        <span>Add Task</span>
+                    </button>
+                </form>
+            </section>
+
+            <section aria-labelledby="task-list-heading">
+                <h2 id="task-list-heading">Tasks</h2>
+
+                <div class="filter-buttons" role="group" aria-label="Filter tasks by status">
+                    <button type="button" class="filter-btn active" data-filter="all">
+                        All <span class="badge" id="count-all">0</span>
+                    </button>
+                    <button type="button" class="filter-btn" data-filter="active">
+                        Active <span class="badge" id="count-active">0</span>
+                    </button>
+                    <button type="button" class="filter-btn" data-filter="completed">
+                        Completed <span class="badge" id="count-completed">0</span>
+                    </button>
+                </div>
+
+                <div id="empty-state" class="empty-state" role="status" aria-live="polite">
+                    <p>No tasks yet. Add one to get started!</p>
+                </div>
+
+                <ul id="task-list" class="task-list" aria-label="Task list">
+                    <!-- Tasks will be dynamically added here -->
+                </ul>
+
+                <div id="tasks-remaining" class="tasks-info" role="status" aria-live="polite" aria-atomic="true">
+                </div>
+            </section>
+
+            <section aria-labelledby="actions-heading" class="actions-section">
+                <h2 id="actions-heading" class="sr-only">Bulk Actions</h2>
+                <button type="button" id="clear-completed-btn" class="btn btn-secondary" aria-label="Clear all completed tasks">
+                    Clear Completed
+                </button>
+            </section>
+        </main>
+
+        <footer role="contentinfo">
+            <p>&copy; 2025 Task Manager. Organize your day with ease.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
