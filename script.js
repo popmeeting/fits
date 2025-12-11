@@ -13,6 +13,7 @@ class TaskManager {
         this.loadTasks();
         this.cacheDOM();
         this.bindEvents();
+        this.initTheme();
         this.render();
     }
 
@@ -32,6 +33,7 @@ class TaskManager {
             active: document.getElementById('count-active'),
             completed: document.getElementById('count-completed'),
         };
+        this.themeToggle = document.getElementById('theme-toggle');
     }
 
     /**
@@ -45,6 +47,61 @@ class TaskManager {
             btn.addEventListener('click', (e) => this.handleFilterClick(e));
         });
         this.clearCompletedBtn.addEventListener('click', () => this.handleClearCompleted());
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => this.toggleTheme());
+            this.themeToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.toggleTheme();
+                }
+            });
+        }
+    }
+
+    /**
+     * Initialize theme based on user preference or system
+     */
+    initTheme() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved ? saved : (prefersDark ? 'dark' : 'light');
+
+        this.applyTheme(theme);
+    }
+
+    /**
+     * Apply theme and update toggle button
+     */
+    applyTheme(theme) {
+        const root = document.documentElement;
+        if (theme === 'dark') {
+            root.setAttribute('data-theme', 'dark');
+            root.classList.add('dark-mode');
+            if (this.themeToggle) {
+                this.themeToggle.setAttribute('aria-pressed', 'true');
+                const icon = this.themeToggle.querySelector('.theme-icon');
+                if (icon) icon.textContent = '☀️';
+            }
+        } else {
+            root.removeAttribute('data-theme');
+            root.classList.remove('dark-mode');
+            if (this.themeToggle) {
+                this.themeToggle.setAttribute('aria-pressed', 'false');
+                const icon = this.themeToggle.querySelector('.theme-icon');
+                if (icon) icon.textContent = '🌙';
+            }
+        }
+        localStorage.setItem('theme', theme);
+    }
+
+    /**
+     * Toggle between dark and light themes
+     */
+    toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') === 'dark' || document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        this.applyTheme(next);
+        this.announce(`Switched to ${next} theme`);
     }
 
     /**

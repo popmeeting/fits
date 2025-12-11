@@ -53,6 +53,53 @@
     --radius-lg: 0.75rem;
 }
 
+/* ============================================================================
+   Theme Toggle & Manual Dark Mode
+   ============================================================================ */
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+}
+
+.theme-toggle {
+    padding: 0.5rem;
+    width: 48px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.08);
+    color: var(--bg-white);
+}
+
+.theme-toggle .theme-icon {
+    font-size: 1.1rem;
+}
+
+.theme-toggle[aria-pressed="true"] {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-1px);
+}
+
+/* Manual dark-mode: use attribute for toggling so JS can control theme */
+:root[data-theme="dark"], :root.dark-mode {
+    --bg-white: #0b1220;
+    --bg-light: #071025;
+    --text-primary: #f3f4f6;
+    --text-secondary: #cbd5e1;
+    --border-color: #1f2937;
+    --primary-light: #1e3a8a;
+}
+
+/* Smooth transition when switching themes */
+html {
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
 * {
     margin: 0;
     padding: 0;
