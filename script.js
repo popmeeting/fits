@@ -6,6 +6,176 @@ class TaskManager {
     constructor() {
         this.tasks = [];
         this.currentFilter = 'all';
+        this.translations = {
+            'en': {
+                title: 'Task Manager',
+                subtitle: 'Organize your tasks efficiently',
+                addTask: 'Add Task',
+                newTaskLabel: 'New Task',
+                inputPlaceholder: 'Add a new task...',
+                inputErrorEmpty: 'Please enter a task.',
+                inputErrorTooLong: 'Task must be 200 characters or less.',
+                all: 'All',
+                active: 'Active',
+                completed: 'Completed',
+                noTasks: 'No tasks yet. Add one to get started!',
+                clearCompleted: 'Clear Completed',
+                taskAdded: 'Task "{text}" added',
+                taskDeleted: 'Task "{text}" deleted',
+                taskCompleted: 'completed',
+                taskMarkedIncomplete: 'marked as incomplete',
+                allCompletedMessage: 'All tasks completed! 🎉',
+                activeTasksOne: '1 active task remaining',
+                activeTasksMany: '{count} active tasks remaining',
+                justNow: 'just now',
+                minutesAgo: '{n}m ago',
+                hoursAgo: '{n}h ago',
+                daysAgo: '{n}d ago',
+                markComplete: 'complete',
+                markIncomplete: 'incomplete',
+                deleteTask: 'Delete task',
+            },
+            'zh-CN': {
+                title: '任务管理器',
+                subtitle: '高效地组织您的任务',
+                addTask: '添加任务',
+                newTaskLabel: '新任务',
+                inputPlaceholder: '添加一个新任务...',
+                inputErrorEmpty: '请输入任务。',
+                inputErrorTooLong: '任务最多200个字符。',
+                all: '全部',
+                active: '未完成',
+                completed: '已完成',
+                noTasks: '尚无任务。添加一个开始吧！',
+                clearCompleted: '删除已完成',
+                taskAdded: '已添加任务 "{text}"',
+                taskDeleted: '已删除任务 "{text}"',
+                taskCompleted: '已完成',
+                taskMarkedIncomplete: '标记为未完成',
+                allCompletedMessage: '所有任务已完成！🎉',
+                activeTasksOne: '1 个未完成任务',
+                activeTasksMany: '{count} 个未完成任务',
+                justNow: '刚刚',
+                minutesAgo: '{n} 分钟前',
+                hoursAgo: '{n} 小时前',
+                daysAgo: '{n} 天前',
+                markComplete: '完成',
+                markIncomplete: '未完成',
+                deleteTask: '删除任务',
+            },
+            'ru': {
+                title: 'Менеджер задач',
+                subtitle: 'Организуйте ваши задачи эффективно',
+                addTask: 'Добавить задачу',
+                newTaskLabel: 'Новая задача',
+                inputPlaceholder: 'Добавьте новую задачу...',
+                inputErrorEmpty: 'Пожалуйста, введите задачу.',
+                inputErrorTooLong: 'Задача должна быть не более 200 символов.',
+                all: 'Все',
+                active: 'Активные',
+                completed: 'Выполненные',
+                noTasks: 'Пока нет задач. Добавьте первую!',
+                clearCompleted: 'Удалить выполненные',
+                taskAdded: 'Задача "{text}" добавлена',
+                taskDeleted: 'Задача "{text}" удалена',
+                taskCompleted: 'выполнена',
+                taskMarkedIncomplete: 'помечена как невыполненная',
+                allCompletedMessage: 'Все задачи выполнены! 🎉',
+                activeTasksOne: '1 активная задача',
+                activeTasksMany: '{count} активных задач',
+                justNow: 'только что',
+                minutesAgo: '{n} мин назад',
+                hoursAgo: '{n} ч назад',
+                daysAgo: '{n} дн назад',
+                markComplete: 'выполнить',
+                markIncomplete: 'не выполнено',
+                deleteTask: 'Удалить задачу',
+            },
+            'ar': {
+                title: 'مدير المهام',
+                subtitle: 'نظم مهامك بكفاءة',
+                addTask: 'أضف مهمة',
+                newTaskLabel: 'مهمة جديدة',
+                inputPlaceholder: 'أضف مهمة جديدة...',
+                inputErrorEmpty: 'الرجاء إدخال مهمة.',
+                inputErrorTooLong: 'يجب ألا تتجاوز المهمة 200 حرف.',
+                all: 'الكل',
+                active: 'قيد التنفيذ',
+                completed: 'مكتملة',
+                noTasks: 'لا توجد مهام بعد. أضف واحدة للبدء!',
+                clearCompleted: 'مسح المكتمل',
+                taskAdded: 'تمت إضافة المهمة "{text}"',
+                taskDeleted: 'تم حذف المهمة "{text}"',
+                taskCompleted: 'مكتملة',
+                taskMarkedIncomplete: 'وُسمت كغير مكتملة',
+                allCompletedMessage: 'تمت جميع المهام! 🎉',
+                activeTasksOne: 'مهمة واحدة قيد التنفيذ',
+                activeTasksMany: '{count} مهام قيد التنفيذ',
+                justNow: 'الآن',
+                minutesAgo: 'منذ {n} دقيقة',
+                hoursAgo: 'منذ {n} ساعة',
+                daysAgo: 'منذ {n} يوم',
+                markComplete: 'اكتمال',
+                markIncomplete: 'غير مكتمل',
+                deleteTask: 'حذف المهمة',
+            },
+            'ja': {
+                title: 'タスクマネージャー',
+                subtitle: 'タスクを効率的に管理しましょう',
+                addTask: 'タスクを追加',
+                newTaskLabel: '新しいタスク',
+                inputPlaceholder: '新しいタスクを追加...',
+                inputErrorEmpty: 'タスクを入力してください。',
+                inputErrorTooLong: 'タスクは200文字以内で入力してください。',
+                all: 'すべて',
+                active: '未完了',
+                completed: '完了',
+                noTasks: 'タスクはありません。追加して始めましょう！',
+                clearCompleted: '完了を消去',
+                taskAdded: 'タスク「{text}」を追加しました',
+                taskDeleted: 'タスク「{text}」を削除しました',
+                taskCompleted: '完了',
+                taskMarkedIncomplete: '未完了にマークされました',
+                allCompletedMessage: 'すべてのタスクが完了しました！🎉',
+                activeTasksOne: '1 件の未完了タスク',
+                activeTasksMany: '{count} 件の未完了タスク',
+                justNow: 'たった今',
+                minutesAgo: '{n}分前',
+                hoursAgo: '{n}時間前',
+                daysAgo: '{n}日前',
+                markComplete: '完了',
+                markIncomplete: '未完了',
+                deleteTask: 'タスクを削除',
+            },
+            'ko': {
+                title: '작업 관리자',
+                subtitle: '작업을 효율적으로 정리하세요',
+                addTask: '작업 추가',
+                newTaskLabel: '새 작업',
+                inputPlaceholder: '새 작업 추가...',
+                inputErrorEmpty: '작업을 입력하세요.',
+                inputErrorTooLong: '작업은 200자 이하여야 합니다.',
+                all: '전체',
+                active: '진행중',
+                completed: '완료됨',
+                noTasks: '작업이 없습니다. 추가하여 시작하세요!',
+                clearCompleted: '완료 삭제',
+                taskAdded: '작업 "{text}" 추가됨',
+                taskDeleted: '작업 "{text}" 삭제됨',
+                taskCompleted: '완료됨',
+                taskMarkedIncomplete: '미완료로 표시됨',
+                allCompletedMessage: '모든 작업이 완료되었습니다! 🎉',
+                activeTasksOne: '1개의 진행중인 작업',
+                activeTasksMany: '{count}개의 진행중인 작업',
+                justNow: '방금 전',
+                minutesAgo: '{n}분 전',
+                hoursAgo: '{n}시간 전',
+                daysAgo: '{n}일 전',
+                markComplete: '완료',
+                markIncomplete: '미완료',
+                deleteTask: '작업 삭제',
+            }
+        };
         this.init();
     }
 
@@ -14,6 +184,7 @@ class TaskManager {
         this.cacheDOM();
         this.bindEvents();
         this.initTheme();
+        this.initLanguage();
         this.render();
     }
 
@@ -34,6 +205,8 @@ class TaskManager {
             completed: document.getElementById('count-completed'),
         };
         this.themeToggle = document.getElementById('theme-toggle');
+        this.langSelect = document.getElementById('lang-select');
+        this.appTitle = document.getElementById('app-title');
     }
 
     /**
@@ -56,6 +229,12 @@ class TaskManager {
                 }
             });
         }
+        if (this.langSelect) {
+            this.langSelect.addEventListener('change', (e) => {
+                const value = e.target.value;
+                this.applyLanguage(value);
+            });
+        }
     }
 
     /**
@@ -67,6 +246,93 @@ class TaskManager {
         const theme = saved ? saved : (prefersDark ? 'dark' : 'light');
 
         this.applyTheme(theme);
+    }
+
+    /**
+     * Initialize language based on saved preference or browser default
+     */
+    initLanguage() {
+        const saved = localStorage.getItem('lang');
+        const browser = navigator.language || navigator.userLanguage || 'en';
+        const normalized = saved || (['zh', 'zh-CN'].includes(browser) ? 'zh-CN' : browser.split('-')[0]);
+        const supported = Object.keys(this.translations);
+        const lang = supported.includes(normalized) ? normalized : (supported.includes(browser) ? browser : 'en');
+
+        if (this.langSelect) {
+            // if saved value exists, use it, otherwise try to match browser
+            this.langSelect.value = saved || (supported.includes(browser) ? browser : lang);
+        }
+
+        this.applyLanguage(saved || lang);
+    }
+
+    /**
+     * Apply language to UI and persist selection
+     */
+    applyLanguage(code) {
+        const lang = code || 'en';
+        const tr = this.translations[lang] || this.translations['en'];
+
+        // Document language and direction for accessibility
+        document.documentElement.lang = lang;
+        if (lang === 'ar') {
+            document.documentElement.dir = 'rtl';
+        } else {
+            document.documentElement.dir = 'ltr';
+        }
+
+        // Update static texts
+        if (this.appTitle) this.appTitle.textContent = tr.title;
+        const subtitle = document.querySelector('.subtitle');
+        if (subtitle) subtitle.textContent = tr.subtitle;
+
+        // Update form labels and placeholders
+        const inputLabel = document.querySelector('label[for="task-input"]');
+        if (inputLabel) inputLabel.textContent = tr.newTaskLabel;
+        if (this.taskInput) this.taskInput.placeholder = tr.inputPlaceholder;
+
+        // Update add button
+        const submitBtn = document.querySelector('#task-form button[type="submit"]');
+        if (submitBtn) {
+            const icon = submitBtn.querySelector('.btn-icon');
+            const textSpan = submitBtn.querySelector('span:not(.btn-icon)');
+            if (textSpan) textSpan.textContent = tr.addTask;
+            submitBtn.setAttribute('aria-label', tr.addTask);
+        }
+
+        // Update filter buttons (preserve badge counts)
+        const allBadge = document.getElementById('count-all')?.textContent || '0';
+        const activeBadge = document.getElementById('count-active')?.textContent || '0';
+        const completedBadge = document.getElementById('count-completed')?.textContent || '0';
+
+        const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+        const activeBtn = document.querySelector('.filter-btn[data-filter="active"]');
+        const completedBtn = document.querySelector('.filter-btn[data-filter="completed"]');
+
+        if (allBtn) allBtn.innerHTML = `${tr.all} <span class="badge" id="count-all">${allBadge}</span>`;
+        if (activeBtn) activeBtn.innerHTML = `${tr.active} <span class="badge" id="count-active">${activeBadge}</span>`;
+        if (completedBtn) completedBtn.innerHTML = `${tr.completed} <span class="badge" id="count-completed">${completedBadge}</span>`;
+
+        // Update empty state
+        const emptyP = this.emptyState ? this.emptyState.querySelector('p') : null;
+        if (emptyP) emptyP.textContent = tr.noTasks;
+
+        // Update clear button
+        if (this.clearCompletedBtn) {
+            this.clearCompletedBtn.textContent = tr.clearCompleted;
+            this.clearCompletedBtn.setAttribute('aria-label', tr.clearCompleted);
+        }
+
+        // Persist selection and update cached badge refs
+        localStorage.setItem('lang', lang);
+        this.countBadges = {
+            all: document.getElementById('count-all'),
+            active: document.getElementById('count-active'),
+            completed: document.getElementById('count-completed'),
+        };
+
+        // Re-render to ensure task aria labels and dates are localized
+        this.render();
     }
 
     /**
@@ -129,13 +395,15 @@ class TaskManager {
         const errorElement = document.getElementById('task-input-error');
 
         if (!text) {
-            errorElement.textContent = 'Please enter a task.';
+            const tr = this.translations[document.documentElement.lang || 'en'];
+            errorElement.textContent = tr.inputErrorEmpty;
             this.taskInput.setAttribute('aria-invalid', 'true');
             return;
         }
 
         if (text.length > 200) {
-            errorElement.textContent = 'Task must be 200 characters or less.';
+            const tr = this.translations[document.documentElement.lang || 'en'];
+            errorElement.textContent = tr.inputErrorTooLong;
             this.taskInput.setAttribute('aria-invalid', 'true');
             return;
         }
@@ -157,7 +425,8 @@ class TaskManager {
         this.render();
 
         // Announce to screen readers
-        this.announce(`Task "${text}" added`);
+        const tr = this.translations[document.documentElement.lang || 'en'];
+        this.announce(tr.taskAdded.replace('{text}', text));
     }
 
     /**
@@ -171,7 +440,8 @@ class TaskManager {
 
         // Announce to screen readers
         if (task) {
-            this.announce(`Task "${task.text}" deleted`);
+            const tr = this.translations[document.documentElement.lang || 'en'];
+            this.announce(tr.taskDeleted.replace('{text}', task.text));
         }
     }
 
@@ -185,8 +455,9 @@ class TaskManager {
             this.saveTasks();
             this.render();
 
-            const status = task.completed ? 'completed' : 'marked as incomplete';
-            this.announce(`Task "${task.text}" ${status}`);
+            const tr = this.translations[document.documentElement.lang || 'en'];
+            const status = task.completed ? tr.taskCompleted : tr.taskMarkedIncomplete;
+            this.announce(tr.taskAdded ? tr.taskAdded.replace('{text}', task.text) : `${task.text} ${status}`);
         }
     }
 
@@ -216,7 +487,9 @@ class TaskManager {
         this.saveTasks();
         this.render();
 
-        this.announce(`${completedCount} completed task(s) deleted`);
+        const tr = this.translations[document.documentElement.lang || 'en'];
+        const msg = tr.activeTasksMany.replace('{count}', completedCount);
+        this.announce(msg + ' ' + tr.clearCompleted);
     }
 
     /**
@@ -255,12 +528,15 @@ class TaskManager {
         const diffHours = Math.floor(diffMs / 3600000);
         const diffDays = Math.floor(diffMs / 86400000);
 
-        if (diffMins < 1) return 'just now';
-        if (diffMins < 60) return `${diffMins}m ago`;
-        if (diffHours < 24) return `${diffHours}h ago`;
-        if (diffDays < 7) return `${diffDays}d ago`;
+        const lang = document.documentElement.lang || 'en';
+        const tr = this.translations[lang] || this.translations['en'];
 
-        return date.toLocaleDateString('en-US', {
+        if (diffMins < 1) return tr.justNow;
+        if (diffMins < 60) return tr.minutesAgo.replace('{n}', diffMins);
+        if (diffHours < 24) return tr.hoursAgo.replace('{n}', diffHours);
+        if (diffDays < 7) return tr.daysAgo.replace('{n}', diffDays);
+
+        return date.toLocaleDateString(lang, {
             month: 'short',
             day: 'numeric',
         });
@@ -282,7 +558,7 @@ class TaskManager {
                 id="${checkboxId}"
                 class="task-checkbox"
                 ${task.completed ? 'checked' : ''}
-                aria-label="Mark task as ${task.completed ? 'incomplete' : 'complete'}"
+                aria-label="${task.completed ? (this.translations[document.documentElement.lang || 'en'].markIncomplete) : (this.translations[document.documentElement.lang || 'en'].markComplete)}"
             >
             <div class="task-content">
                 <label for="${checkboxId}" class="task-text">${this.escapeHtml(task.text)}</label>
@@ -292,8 +568,8 @@ class TaskManager {
                 <button
                     type="button"
                     class="task-btn task-btn-delete"
-                    aria-label="Delete task: ${this.escapeHtml(task.text)}"
-                    title="Delete task"
+                    aria-label="${this.escapeHtml(this.translations[document.documentElement.lang || 'en'].deleteTask)}: ${this.escapeHtml(task.text)}"
+                    title="${this.escapeHtml(this.translations[document.documentElement.lang || 'en'].deleteTask)}"
                 >
                     🗑️
                 </button>
@@ -340,13 +616,11 @@ class TaskManager {
             this.tasksRemaining.textContent = '';
             return;
         }
-
-        const text =
-            activeTasks === 0
-                ? 'All tasks completed! 🎉'
-                : activeTasks === 1
-                  ? '1 active task remaining'
-                  : `${activeTasks} active tasks remaining`;
+        const tr = this.translations[document.documentElement.lang || 'en'];
+        let text = '';
+        if (activeTasks === 0) text = tr.allCompletedMessage;
+        else if (activeTasks === 1) text = tr.activeTasksOne;
+        else text = tr.activeTasksMany.replace('{count}', activeTasks);
 
         this.tasksRemaining.textContent = text;
     }

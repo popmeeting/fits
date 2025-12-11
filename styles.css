@@ -100,6 +100,35 @@ html {
     transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+/* Language selector styling */
+.header-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lang-select {
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+    color: var(--bg-white);
+    font-size: var(--font-size-sm);
+}
+
+/* RTL adjustments when direction is set on the document */
+[dir="rtl"] .header-top {
+    direction: rtl;
+}
+
+[dir="rtl"] .filter-buttons {
+    direction: rtl;
+}
+
+[dir="rtl"] .task-item {
+    direction: rtl;
+}
+
 * {
     margin: 0;
     padding: 0;
